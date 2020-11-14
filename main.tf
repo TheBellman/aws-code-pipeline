@@ -62,16 +62,23 @@ data aws_iam_policy_document codebuild {
   }
 
   statement {
-    sid       = "reportgroup"
-    resources = ["arn:aws:codebuild:${var.aws_region}:${var.aws_account_id}:report-group/${local.name}-*"]
-    actions = [
-      "codebuild:CreateReportGroup",
-      "codebuild:CreateReport",
-      "codebuild:UpdateReport",
-      "codebuild:BatchPutTestCases",
-      "codebuild:BatchPutCodeCoverages"
-    ]
+    sid = "read"
+    resources = ["arn:aws:s3:::${var.bucket_name}/${local.name}", "arn:aws:s3:::${var.bucket_name}/${local.name}/*"]
+    actions   = ["s3:GetObject", "s3:GetObjectAcl"]
   }
+
+  #
+  # statement {
+  #   sid       = "reportgroup"
+  #   resources = ["arn:aws:codebuild:${var.aws_region}:${var.aws_account_id}:report-group/${local.name}-*"]
+  #   actions = [
+  #     "codebuild:CreateReportGroup",
+  #     "codebuild:CreateReport",
+  #     "codebuild:UpdateReport",
+  #     "codebuild:BatchPutTestCases",
+  #     "codebuild:BatchPutCodeCoverages"
+  #   ]
+  # }
 }
 
 resource aws_iam_role_policy codebuild {
