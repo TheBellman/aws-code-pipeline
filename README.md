@@ -90,6 +90,7 @@ To tear down the assets:
 ```
 $ terraform destroy
 ```
+
 Note that this does not remove the contents of the build bucket, you might want to clean those up manually. You will also want to remove the additional remote from the Go lambda project.
 
 ## Notes
