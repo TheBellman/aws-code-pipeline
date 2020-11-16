@@ -20,6 +20,8 @@ aws_account_id = "881999133503"
 bucket_name    = "rahookbuild20211114111717192400000002"
 ```
 
+You will then also have to update the `backend.tf` backend definition.
+
 The profile you use for applying the script will need pretty broad permissions, probably close to a full admin. The bucket is used to hold assets for the Code Pipeline build, and is where the Lambda ZIP file will be deployed as well. This bucket needs to pre-exist, should be private, and needs to be readable and writeable by the account.
 
 Running up the infrastructure is simple. Note this creates the target Code Commit repository - you will need to manually push the lambda code into it in order to any testing.
